@@ -67,9 +67,9 @@
     "prettier": "2.8.8"
   },
   "devDependencies": {
-    "@types/node": "20.10.5",
+    "@types/node": "20.12.7",
     "@types/prettier": "2.7.3",
-    "typescript": "5.2.2"
+    "typescript": "5.4.5"
   },
   "scripts": {
     "postinstall": "node postinstall.js",
