@@ -37,13 +37,13 @@
     "url": "https://github.com/leanupjs/leanup/issues"
   },
   "dependencies": {
-    "@leanup/cli-core-babel": "1.3.50",
+    "@leanup/cli-core-babel": "workspace:*",
     "@snowpack/plugin-babel": "2.1.7",
     "babel-plugin-angularjs-annotate": "0.10.0"
   },
   "devDependencies": {
-    "@leanup/stack-webpack": "1.3.50",
-    "@types/node": "20.12.7",
+    "@leanup/stack-webpack": "workspace:*",
+    "@types/node": "20.12.13",
     "typescript": "5.4.5"
   },
   "peerDependencies": {

@@ -24,12 +24,12 @@
     "lit-element": "lib/cli.js"
   },
   "devDependencies": {
-    "@leanup/cli": "1.3.50",
-    "@types/node": "20.12.7",
+    "@leanup/cli": "workspace:*",
+    "@types/node": "20.12.13",
     "typescript": "5.4.5"
   },
   "peerDependencies": {
-    "@leanup/cli": "~1.3.49"
+    "@leanup/cli": "workspace:*"
   },
   "scripts": {
     "prepack": "rm -rf lib && tsc -p tsconfig.json && tsc"

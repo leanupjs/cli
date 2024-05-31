@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+		"clean": "git clean -f -d -X",
     "ci": "npm ci && lerna exec --ignore=@template/* --stream -- npm ci",
     "format:tpl": "prettier --write packages/cli/frameworks/*/template/src/**/* --ignore-unknown",
     "ncu:major": "ncu && pnpm -r exec ncu",
@@ -11,7 +12,7 @@
     "outdated": "(npm outdated || true) && pnpm -r exec npm outdated",
     "remove": "pnpm -r exec rm -rf node_modules package-lock.json *.log *.tgz && rm -rf node_modules package-lock.json *.log *.tgz && git clean -f -d -X",
     "reinstall": "pnpm remove && pnpm update",
-		"update": "pnpm ncu:patch && pnpm ncu:minor && pnpm ncu:major",
+    "update": "pnpm ncu:patch && pnpm ncu:minor && pnpm ncu:major",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
@@ -47,11 +48,16 @@
     "husky": "8.0.3",
     "lerna": "7.4.2",
     "lint-staged": "14.0.1",
-    "npm-check-updates": "16.14.18",
+    "npm-check-updates": "16.14.20",
     "prettier": "3.2.5",
     "prettier-plugin-svelte": "3.2.3",
     "svelte": "3.59.2",
     "typescript": "5.4.5",
-    "vitepress": "1.1.3"
+    "vitepress": "1.2.2"
+  },
+  "engines": {
+    "node": "^20",
+    "npm": "^10",
+    "pnpm": "^9"
   }
 }

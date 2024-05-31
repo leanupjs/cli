@@ -39,9 +39,9 @@
     "snowpack-plugin-replace": "1.0.4"
   },
   "devDependencies": {
-    "@leanup/stack": "1.3.50"
+    "@leanup/stack": "workspace:*"
   },
   "peerDependencies": {
-    "@leanup/stack": "~1.3.49"
+    "@leanup/stack": "workspace:*"
   }
 }
