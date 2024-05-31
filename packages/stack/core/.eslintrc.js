@@ -48,7 +48,7 @@ module.exports = {
      * - https://www.npmjs.com/package/eslint-plugin-json
      */
     {
-      extends: ['plugin:json/recommended'],
+      extends: ["plugin:json/recommended-legacy"],
       files: ['**/*.json'],
       plugins: ['json'],
     },
