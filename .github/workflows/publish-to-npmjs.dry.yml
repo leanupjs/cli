@@ -20,10 +20,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
       # https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files
-      - name: Replace alias in all package.json's
-        run: |
+      - run: |
           find packages -name "*.js" -type f -exec sed -i -e "s/@leanup/@${{env.alias}}/g" {} +
           find packages -name "*.json" -type f -exec sed -i -e "s/@leanup/@${{env.alias}}/g" {} +
           find packages -name "*.ts" -type f -exec sed -i -e "s/@leanup/@${{env.alias}}/g" {} +
@@ -31,58 +34,61 @@ jobs:
           find packages -name "*.svelte" -type f -exec sed -i -e "s/@leanup/@${{env.alias}}/g" {} +
           find packages -name "*.vue" -type f -exec sed -i -e "s/@leanup/@${{env.alias}}/g" {} +
           git diff
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+
+      # https://github.com/pnpm/action-setup#use-cache-to-reduce-installation-time
+      - uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
-          registry-url: '${{env.registry}}'
-          scope: '@${{env.alias}}'
+          # cache: pnpm
+          node-version: 20
+      - uses: pnpm/action-setup@v4
+        id: pnpm-install
+        with:
+          version: 9
+          run_install: false
+      - id: pnpm-cache
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store
+
+      - run: pnpm i
+
       - name: Install and publish only @${{env.alias}}/stack
-        run: |
-          npm install
-          npm publish --access=${{env.access}} --tag=${{env.tag}} || true
+        run: pnpm publish --access=${{env.access}} --tag=${{env.tag}} || true
         working-directory: packages/stack/core
         env:
           NODE_AUTH_TOKEN: ${{env.token}}
       - name: Install and publish only @${{env.alias}}/stack-snowpack
-        run: |
-          npm install
-          npm publish --access=${{env.access}} --tag=${{env.tag}} || true
+        run: pnpm publish --access=${{env.access}} --tag=${{env.tag}} || true
         working-directory: packages/stack/snowpack
         env:
           NODE_AUTH_TOKEN: ${{env.token}}
       - name: Install and publish only @${{env.alias}}/stack-vite
-        run: |
-          npm install
-          npm publish --access=${{env.access}} --tag=${{env.tag}} || true
+        run: pnpm publish --access=${{env.access}} --tag=${{env.tag}} || true
         working-directory: packages/stack/vite
         env:
           NODE_AUTH_TOKEN: ${{env.token}}
       - name: Install and publish only @${{env.alias}}/stack-webpack
-        run: |
-          npm install
-          npm publish --access=${{env.access}} --tag=${{env.tag}} || true
+        run: pnpm publish --access=${{env.access}} --tag=${{env.tag}} || true
         working-directory: packages/stack/webpack
         env:
           NODE_AUTH_TOKEN: ${{env.token}}
       - name: Install and publish only @${{env.alias}}/lib
-        run: |
-          npm install
-          npm publish --access=${{env.access}} --tag=${{env.tag}} || true
+        run: pnpm publish --access=${{env.access}} --tag=${{env.tag}} || true
         working-directory: packages/lib
         env:
           NODE_AUTH_TOKEN: ${{env.token}}
       - name: Install and publish only @${{env.alias}}/cli-core-babel
-        run: |
-          npm install
-          npm publish --access=${{env.access}} --tag=${{env.tag}} || true
+        run: pnpm publish --access=${{env.access}} --tag=${{env.tag}} || true
         working-directory: packages/cli/core/babel
         env:
           NODE_AUTH_TOKEN: ${{env.token}}
       - name: Install and publish only @${{env.alias}}/cli
-        run: |
-          npm install
-          npm publish --access=${{env.access}} --access=public --tag=${{env.tag}} || true
+        run: pnpm publish --access=${{env.access}} --access=public --tag=${{env.tag}} || true
         working-directory: packages/cli/core
         env:
           NODE_AUTH_TOKEN: ${{env.token}}
