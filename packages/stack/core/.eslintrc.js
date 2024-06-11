@@ -15,10 +15,7 @@ module.exports = {
      * - https://www.npmjs.com/package/@typescript-eslint/parser
      */
     {
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      ],
+      extends: ['plugin:@typescript-eslint/recommended'],
       files: ['**/*.ts', '**/*.tsx'],
       parserOptions: {
         ecmaVersion: 2018,
@@ -48,7 +45,7 @@ module.exports = {
      * - https://www.npmjs.com/package/eslint-plugin-json
      */
     {
-      extends: ['plugin:json/recommended-legacy'],
+      extends: ['plugin:json/recommended'],
       files: ['**/*.json'],
       plugins: ['json'],
     },
