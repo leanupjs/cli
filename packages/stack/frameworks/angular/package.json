@@ -47,8 +47,8 @@
   "devDependencies": {
     "@angular/compiler-cli": "16.2.12",
     "@leanup/stack-webpack": "workspace:*",
-    "@types/node": "20.12.13",
-    "tslib": "2.6.2",
+    "@types/node": "20.14.2",
+    "tslib": "2.6.3",
     "typescript": "<5.2"
   },
   "peerDependencies": {

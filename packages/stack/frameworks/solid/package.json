@@ -46,7 +46,7 @@
   "devDependencies": {
     "@leanup/stack-vite": "workspace:*",
     "@leanup/stack-webpack": "workspace:*",
-    "@types/node": "20.12.13",
+    "@types/node": "20.14.2",
     "typescript": "5.4.5"
   },
   "peerDependencies": {

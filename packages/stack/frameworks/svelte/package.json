@@ -39,13 +39,13 @@
   },
   "dependencies": {
     "@snowpack/plugin-svelte": "3.7.0",
-    "prettier-plugin-svelte": "3.2.3",
-    "svelte-loader": "3.2.0",
+    "prettier-plugin-svelte": "3.2.4",
+    "svelte-loader": "3.2.3",
     "vite-plugin-svelte": "3.0.1"
   },
   "devDependencies": {
     "@leanup/stack-webpack": "workspace:*",
-    "@types/node": "20.12.13",
+    "@types/node": "20.14.2",
     "typescript": "5.4.5"
   },
   "peerDependencies": {

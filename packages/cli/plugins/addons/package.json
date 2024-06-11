@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@leanup/cli": "workspace:*",
-    "@types/node": "20.12.13",
+    "@types/node": "20.14.2",
     "typescript": "5.4.5",
     "webpack": "5.91.0"
   },
